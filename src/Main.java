@@ -1,8 +1,5 @@
-import java.sql.ClientInfoStatus;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+
+import java.util.*;
 
 public class Main {
     static Person client1 = new Person("Александр", "Яковлев", 4);
@@ -24,20 +21,16 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        //int tick = 0;
-        Deque<Person> chain = new ArrayDeque<>();
-        chain.addAll(generateClients());
+        Queue<Person> chain = new LinkedList<>(generateClients());
         while (!chain.isEmpty()) {
-            int tick = 0;
-            String ready = String.valueOf(chain.element().getName());
-            String ready2 = String.valueOf(chain.element().getSurname());
-            System.out.println(ready + " " + ready2 + " прокатился на атракционе!");
-            tick = chain.element().getTicket();
+            int tick;
+            Person person = chain.poll();
+            System.out.println(person.getName() + " " + person.getSurname() + " прокатился на аттракционе!");
+            tick = person.getTicket();
             tick--;
-            chain.element().setTicket();
-            chain.pollFirst();
+            person.setTicket();
             if (tick != 0) {
-                chain.offerLast(new Person(ready, ready2, tick));
+                chain.offer(new Person(person.getName(), person.getSurname(), tick));
             }
 
         }

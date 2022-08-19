@@ -1,6 +1,6 @@
 public class Person {
-    private String name;
-    private String surname;
+    private final String name;
+    private final String surname;
     protected int ticket;
 
     public Person(String name, String surname, int ticket) {
@@ -8,6 +8,7 @@ public class Person {
         this.surname = surname;
         this.ticket = ticket;
     }
+
     public String getName() {
         return name;
     }
@@ -19,7 +20,7 @@ public class Person {
     public int getTicket() {
         return ticket;
     }
-    public int setTicket() {
-        return this.ticket;
+
+    public void setTicket() {
     }
 }
